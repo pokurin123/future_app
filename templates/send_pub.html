@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #fcfcfc; margin: 0px; padding: 0px;">
+
+    <div class="tool_box" style="width:200px; height:380px;
+    margin:10px;margin-right:250px; margin-top:100px;
+    padding:10px; border:2px solid black;
+    background-color:#a5d5bf;
+    float: right; border-radius: 5px;
+    position: -webkit-sticky; position: sticky; top: 25px;">
+        
+        <!-- 自分のホームへ行く用 -->
+        {%if not sc_number == 0%}
+            <a href="/your_home">マイページ</a>
+        {%endif%}
+
+        <!-- タグ検索用 -->
+        <p><b>検索タグ</b></p>
+        <p><a href="/search_Web">Web</a></p>
+        <p><a href="/search_AI">AI</a></p>
+        <p><a href="/search_VR">VR</a></p>
+        <p><a href="/search_XR">XR</a></p>
+        <p><a href="/search_Unity">Unity</a></p>
+        <p><a href="/search_iOS">iOS</a></p>
+        <p><a href="/search_Android">Android</a></p>
+        <p><a href="/index">ホーム</a></p>
+    </div>
+
+    <div class="index_home" style="width:auto; height:50px;padding:10px; background-color:#4da9a2;
+     line-height: 50px; font-weight: bold; font-size:30px; margin: 0 calc(50% - 50vw); margin-top:0;">
+        武蔵野大学データサイエンス学部 研究アーカイブ：投稿フォーム
+    </div>
+
+    
+    <form method="post" action="/pub_comp" enctype="multipart/form-data">
+        <p style="text-align:center">
+            <b>研究名：</b>
+        <input type="text" name="upload_name"><br>
+        ( <b>" / " </b>や<b> " . " </b>、 <b>" ; " </b>などは使用出来ません、投稿前に再度確認を行いましょう)
+        </p>
+        <hr size="1px" width="600px" color="gray" align="center">
+        <br>
+        <p style="text-align:center">
+            <b>ヘッダー画像：</b>
+        <input type="file" name="file_image"><br>
+        (<b>PNG画像</b>のみがアップロード可能です 最大 3MBまで可)
+        </p>
+        <hr size="1px" width="600px" color="gray" align="center">
+        <br>
+        <p style="text-align:center">
+            <b>投稿PDF：</b>
+        <input type="file" name="file_pdf"><br>
+        ( ファイル名は <b>" / " </b>や<b> " . " </b>、 <b>" ; " </b>などが使用出来ません、投稿前に再度確認を行いましょう)
+        </p>
+        <hr size="1px" width="600px" color="gray" align="center">
+        <br>
+        <p style="text-align:center">
+            <b>研究タグ：</b>
+        <select name="upload_tags">
+            <option value="Web">Web</option>
+            <option value="AI">AI</option>
+            <option value="VR">VR</option>
+            <option value="XR">XR</option>
+            <option value="Unity">Unity</option>
+            <option value="iOS">iOS</option>
+            <option value="Android">Android</option>
+        </select>
+    </p>
+    <hr size="1px" width="600px" color="gray" align="center">
+    
+    <p style="text-align:center">
+        <button type="submit" style="font-size:20px; margin-top:5px; border-style: none;">upload</button>
+    </p>
+    </form>
+</body>
+</html>

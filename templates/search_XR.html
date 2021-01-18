@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/index.css">
+    <title>Document</title>
+</head>
+<body style="background-color: #fcfcfc; margin: 0px; padding: 0px;">
+
+    <div class="tool_box" style="width:200px; height:440px;
+    margin:10px;margin-right:250px; margin-top:100px;
+    padding:10px; border:2px solid black;
+    background-color:#a5d5bf;
+    float: right; border-radius: 5px;
+    position: -webkit-sticky; position: sticky; top: 25px;">
+        <p><b>ユーザ名：</b>{{name}}</p>
+        <p><b>学籍番号：</b>{{sc_number}}</p>
+
+    <!-- 自分のホームへ行く用 -->
+    {%if not sc_number == 0%}
+    <a href="/your_home">マイページ</a>
+    {%endif%}
+
+    <!-- タグ検索用 -->
+    <p><b>検索タグ</b></p>
+    <p><a href="/search_Web">Web</a></p>
+    <p><a href="/search_AI">AI</a></p>
+    <p><a href="/search_VR">VR</a></p>
+    <p><a href="/search_Unity">Unity</a></p>
+    <p><a href="/search_iOS">iOS</a></p>
+    <p><a href="/search_Android">Android</a></p>
+    <p><a href="/index">ホーム</a></p>
+    </div>
+
+    <div class="index_home" style="width:auto; height:50px;padding:10px; background-color:#4da9a2;
+     line-height: 50px; font-weight: bold; font-size:30px; margin: 0 calc(50% - 50vw); margin-top:0;">
+        武蔵野大学データサイエンス学部 研究アーカイブ：XR系研究
+    </div>
+
+    <div style="margin-left:260px;">
+    <form action="/search_XR" method="post">
+        {% for i in range(0,page_make_number) %}
+            {{page_make_list[i] | safe}}
+        {% endfor %}
+    </form>
+    </div>
+
+    <!-- ページ番号が1の時に表示する掲載物のやつ -->
+    {%if page_number_from_py == 1%}
+        {%for i in range(0,10)%}
+        <div style="width:600px; height:300px;
+        margin:10px;margin-left:250px;
+        padding:10px; border:2px;border-radius: 5px;
+        word-wrap: break-word;">
+            <form action="/show_search" method="post" name="pdf_id">
+                {{public_name[i] | safe}}
+                {{public_id[i] | safe}}
+            </form>
+            {{public_image_pass[i] | safe}}
+            <hr size="1px" width="600px" color="gray" align="center">
+        </div>
+        {%endfor%}
+    <!-- ページ番号が1じゃない時に表示するやつ -->
+    {%else%}
+        {%for i in range(start_pub_number,end_pub_number)%}
+        <div style="width:600px; height:300px;
+        margin:10px;margin-left:250px;
+        padding:10px; border:2px;border-radius: 5px;
+        word-wrap: break-word;">
+            <form action="/show_search" method="post" name="pdf_id">
+                {{public_name[i] | safe}}
+                {{public_id[i] | safe}}
+            </form>
+            {{public_image_pass[i] | safe}}
+            <hr size="1px" width="600px" color="gray" align="center">
+        </div>
+        {%endfor%}
+    {%endif%}
+</body>
+</html>
