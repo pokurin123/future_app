@@ -23,9 +23,9 @@ pop_list_page = ["page_number","page_number_web","page_number_AI","page_number_V
 def getConnection():
     return pymysql.connect(
         host='localhost',
-        db='future_app',
-        user='pokurin',
-        password='0831',
+        db='db名',
+        user='ユーザ名',
+        password='パスワード',
         charset='utf8',
         cursorclass=pymysql.cursors.DictCursor
     )
